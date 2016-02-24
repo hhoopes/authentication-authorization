@@ -3,7 +3,7 @@ require 'test_helper'
 class UserRegistersForAccountTest < ActionDispatch::IntegrationTest
   include Capybara::DSL
   test 'user sees name on dashboard' do
-    skip
+
     visit '/'
 
     click_on "Register"
@@ -19,6 +19,7 @@ class UserRegistersForAccountTest < ActionDispatch::IntegrationTest
     assert_equal "/users/#{user.id}", current_path
 
     assert page.has_content? "Welcome, Heidi"
+    session.clear
   end
   # new user visits root of site
   # clicks "Create account"

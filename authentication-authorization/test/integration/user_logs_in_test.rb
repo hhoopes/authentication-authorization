@@ -6,15 +6,14 @@ class UserLogsInTest < ActionDispatch::IntegrationTest
   test "user sees dashboard change to their identity" do
     user = User.create(username: "Marvin", password: "password")
     visit login_path
-
     fill_in "Username", with: "Marvin"
 
     fill_in "Password", with: "password"
 
     click_on "Login"
+    save_and_open_page
 
     assert_equal "/users/#{user.id}", current_path
-    save_and_open_page
 
     assert page.has_content? "Welcome, Marvin"
   end
